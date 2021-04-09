@@ -301,11 +301,6 @@ public class Invoice_Batch_List_Process extends Root_Class {
             WebElement table = driver.findElement(By.tagName("mat-table"));
             List<WebElement> row = table.findElements(By.tagName("mat-row"));
             List<WebElement> column = table.findElements(By.tagName("mat-cell"));
-
-//            for (int i = 0; i < siz; i++) {
-//
-//            }
-
             for (int i = 1; i <= 3; i++) {
 
                 try {

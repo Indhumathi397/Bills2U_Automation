@@ -635,31 +635,6 @@ public class Reminder_Setup_Process extends Root_Class {
         } catch (Exception e) {
             test.fail(e.getMessage());
         }
-       /* try {
-            clickHereProcess();
-            editExcelFile();
-            uploadFile();
-            VerifyBillGeanratedCheckBoxClick();
-            Obj_Rep_BatchUpload bUpload = new Obj_Rep_BatchUpload();
-            PageFactory.initElements(driver, bUpload);
-            Thread.sleep(5000);
-            Actions act=new Actions(driver);
-            act.moveToElement(bUpload.btnPublish).click().build().perform();
-            Thread.sleep(3000);
-            act.moveToElement(bUpload.btnPublishAnyway).click().build().perform();
-            Thread.sleep(10000);
-            Obj_Rep_InvoiceBatchList bList = new Obj_Rep_InvoiceBatchList();
-            PageFactory.initElements(driver, bList);
-            if (bList.txtInvoiceBatch.isDisplayed() && bList.txtInvoiceBatch.getText().equals("Invoice Batch")) {
-                test.pass("Biller  able to upload and publish the invoice batch");
-            } else {
-                test.fail("Biller not able to upload and publish the invoice batch");
-            }
-        } catch (Exception e) {
-            test.fail(e.getMessage());
-        }
-*/
-        
     }
 
     public static void VerifySetupCancelButton() {
