@@ -1,8 +1,6 @@
 package bills2u_suite;
 
-import Config.PropertyClass;
 import bills2u_process.Batch_Entry_Process;
-import bills2u_process.ProcessClass;
 
 import java.io.IOException;
 

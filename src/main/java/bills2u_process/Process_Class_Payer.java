@@ -4,20 +4,15 @@ import bills2u_constant.*;
 import bills2u_root.Root_Class_Payers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 public class Process_Class_Payer extends Root_Class_Payers {
@@ -378,7 +373,6 @@ public class Process_Class_Payer extends Root_Class_Payers {
         Obj_Rep_Payments_Payer objPayments = new Obj_Rep_Payments_Payer();
         PageFactory.initElements(driver, objPayments);
         WebDriverWait wait = new WebDriverWait(driver, 30);
-        Actions act = new Actions(driver);
         Thread.sleep(5000);
         wait.until(ExpectedConditions.visibilityOf(objPayments.invoicesHeader));
         if (objPayments.dueAmtValue.isDisplayed()) {

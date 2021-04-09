@@ -1,6 +1,5 @@
 package bills2u_suite;
 
-import Config.PropertyClass;
 import bills2u_process.Merchant_On_Board_Process;
 import java.io.IOException;
 
