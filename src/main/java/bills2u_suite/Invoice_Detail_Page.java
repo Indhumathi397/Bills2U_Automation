@@ -1,13 +1,11 @@
 package bills2u_suite;
 
-import Config.PropertyClass;
 import bills2u_process.Invoice_Detail_Process;
-import bills2u_process.ProcessClass;
 import java.io.IOException;
 
 public class Invoice_Detail_Page extends Invoice_Detail_Process {
 
-    public Invoice_Detail_Page TC_ID_001() throws InterruptedException, IOException {
+    public Invoice_Detail_Page TC_ID_001() throws IOException {
         getTestData();
         test = report.createTest(prop.getProperty("Bills2U.InvoiceDetail.TC1"));
         loginProcess();
@@ -22,7 +20,7 @@ public class Invoice_Detail_Page extends Invoice_Detail_Process {
         return this;
     }
 
-    public Invoice_Detail_Page TC_ID_002() throws InterruptedException, IOException {
+    public Invoice_Detail_Page TC_ID_002() throws IOException {
         getTestData();
         test = report.createTest(prop.getProperty("Bills2U.InvoiceDetail.TC2"));
         loginProcess();
@@ -37,7 +35,7 @@ public class Invoice_Detail_Page extends Invoice_Detail_Process {
         return this;
     }
 
-    public Invoice_Detail_Page TC_ID_003() throws InterruptedException, IOException {
+    public Invoice_Detail_Page TC_ID_003() throws IOException {
         getTestData();
         test = report.createTest(prop.getProperty("Bills2U.InvoiceDetail.TC3"));
         loginProcess();
@@ -52,7 +50,7 @@ public class Invoice_Detail_Page extends Invoice_Detail_Process {
         return this;
     }
 
-    public Invoice_Detail_Page TC_ID_004() throws InterruptedException, IOException {
+    public Invoice_Detail_Page TC_ID_004() throws IOException {
         getTestData();
         test = report.createTest(prop.getProperty("Bills2U.InvoiceDetail.TC4"));
         loginProcess();
@@ -67,7 +65,7 @@ public class Invoice_Detail_Page extends Invoice_Detail_Process {
         return this;
     }
 
-    public Invoice_Detail_Page TC_ID_005() throws InterruptedException, IOException {
+    public Invoice_Detail_Page TC_ID_005() throws IOException {
         getTestData();
         test = report.createTest(prop.getProperty("Bills2U.InvoiceDetail.TC5"));
         loginProcess();
@@ -82,7 +80,7 @@ public class Invoice_Detail_Page extends Invoice_Detail_Process {
         return this;
     }
 
-    public Invoice_Detail_Page TC_ID_006() throws InterruptedException, IOException {
+    public Invoice_Detail_Page TC_ID_006() throws IOException {
         getTestData();
         test = report.createTest(prop.getProperty("Bills2U.InvoiceDetail.TC6"));
         loginProcess();
@@ -97,7 +95,7 @@ public class Invoice_Detail_Page extends Invoice_Detail_Process {
         return this;
     }
 
-    public Invoice_Detail_Page TC_ID_007() throws InterruptedException, IOException {
+    public Invoice_Detail_Page TC_ID_007() throws IOException {
         getTestData();
         test = report.createTest(prop.getProperty("Bills2U.InvoiceDetail.TC7"));
         loginProcess();
@@ -116,7 +114,7 @@ public class Invoice_Detail_Page extends Invoice_Detail_Process {
         return this;
     }
 
-    public Invoice_Detail_Page TC_ID_008() throws IOException, InterruptedException {
+    public Invoice_Detail_Page TC_ID_008() throws IOException {
         getTestData();
         test = report.createTest(prop.getProperty("Bills2U.InvoiceDetail.TC8"));
         loginProcess();
@@ -138,7 +136,7 @@ public class Invoice_Detail_Page extends Invoice_Detail_Process {
         return this;
     }
 
-    public Invoice_Detail_Page TC_ID_009() throws IOException, InterruptedException {
+    public Invoice_Detail_Page TC_ID_009() throws IOException {
         getTestData();
         test = report.createTest(prop.getProperty("Bills2U.InvoiceDetail.TC9"));
         loginProcess();
@@ -153,7 +151,7 @@ public class Invoice_Detail_Page extends Invoice_Detail_Process {
         return this;
     }
 
-    public Invoice_Detail_Page TC_ID_010() throws IOException, InterruptedException {
+    public Invoice_Detail_Page TC_ID_010() throws IOException {
         getTestData();
         test = report.createTest(prop.getProperty("Bills2U.InvoiceDetail.TC10"));
         loginProcess();
@@ -177,7 +175,7 @@ public class Invoice_Detail_Page extends Invoice_Detail_Process {
         return this;
     }
 
-    public Invoice_Detail_Page TC_ID_011() throws IOException, InterruptedException {
+    public Invoice_Detail_Page TC_ID_011() throws IOException {
         getTestData();
         test = report.createTest(prop.getProperty("Bills2U.InvoiceDetail.TC11"));
         loginProcess();
@@ -202,7 +200,7 @@ public class Invoice_Detail_Page extends Invoice_Detail_Process {
         return this;
     }
 
-    public Invoice_Detail_Page TC_ID_012() throws IOException, InterruptedException {
+    public Invoice_Detail_Page TC_ID_012() throws IOException{
         getTestData();
         test = report.createTest(prop.getProperty("Bills2U.InvoiceDetail.TC12"));
         loginProcess();
@@ -217,7 +215,7 @@ public class Invoice_Detail_Page extends Invoice_Detail_Process {
         return this;
     }
 
-    public Invoice_Detail_Page TC_ID_013() throws IOException, InterruptedException {
+    public Invoice_Detail_Page TC_ID_013() throws IOException {
         getTestData();
         test = report.createTest(prop.getProperty("Bills2U.InvoiceDetail.TC13"));
         loginProcess();
@@ -233,7 +231,7 @@ public class Invoice_Detail_Page extends Invoice_Detail_Process {
         return this;
     }
 
-    public Invoice_Detail_Page TC_ID_014() throws IOException, InterruptedException {
+    public Invoice_Detail_Page TC_ID_014() throws IOException {
         getTestData();
         test = report.createTest(prop.getProperty("Bills2U.InvoiceDetail.TC14"));
         loginProcess();
@@ -250,7 +248,7 @@ public class Invoice_Detail_Page extends Invoice_Detail_Process {
     }
 
 
-    public Invoice_Detail_Page TC_ID_015() throws IOException, InterruptedException {
+    public Invoice_Detail_Page TC_ID_015() throws IOException {
         getTestData();
         test = report.createTest(prop.getProperty("Bills2U.InvoiceDetail.TC15"));
         loginProcess();
@@ -266,7 +264,7 @@ public class Invoice_Detail_Page extends Invoice_Detail_Process {
         return this;
     }
 
-    public Invoice_Detail_Page TC_ID_016() throws IOException, InterruptedException {
+    public Invoice_Detail_Page TC_ID_016() throws IOException {
         getTestData();
         test = report.createTest(prop.getProperty("Bills2U.InvoiceDetail.TC16"));
         loginProcess();
@@ -298,7 +296,7 @@ public class Invoice_Detail_Page extends Invoice_Detail_Process {
         return this;
     }
 
-    public Invoice_Detail_Page TC_ID_018() throws IOException, InterruptedException {
+    public Invoice_Detail_Page TC_ID_018() throws IOException {
         getTestData();
         test = report.createTest(prop.getProperty("Bills2U.InvoiceDetail.TC18"));
         loginProcess();
@@ -315,7 +313,7 @@ public class Invoice_Detail_Page extends Invoice_Detail_Process {
         return this;
     }
 
-    public Invoice_Detail_Page TC_ID_019() throws IOException, InterruptedException {
+    public Invoice_Detail_Page TC_ID_019() throws IOException {
         getTestData();
         test = report.createTest(prop.getProperty("Bills2U.InvoiceDetail.TC19"));
         loginProcess();

@@ -14,8 +14,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.*;
 import java.util.*;
 import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
-
 public class ProcessClass extends Root_Class {
 
     public static Properties prop = null;
@@ -25,37 +23,6 @@ public class ProcessClass extends Root_Class {
         PropertyClass rp = new PropertyClass();
         prop = rp.readPropertiesFile();
     }
-    public static void enterDataInBatchProgress() throws IOException {
-        try {
-            getTestData();
-            Obj_Rep_Invoice objInvoice = new Obj_Rep_Invoice();
-            PageFactory.initElements(driver, objInvoice);
-            WebDriverWait wait = new WebDriverWait(driver, 30);
-            log.info("Waiting till the 'Batch Progress' text box has to be display");
-            wait.until(ExpectedConditions.visibilityOf(objInvoice.batchProgressTxtbox));
-            if (objInvoice.batchProgressTxtbox.isDisplayed()) {
-                log.info("'Batch Progress' text box has displayed");
-                if (objInvoice.batchProgressTxtbox.isEnabled()) {
-                    log.info("'Batch Progress' text box has enabled to type");
-                    objInvoice.batchProgressTxtbox.sendKeys(prop.getProperty("Bills2U.InvoiceBatchList.BatchProgress"));
-                } else {
-                    test.fail("'Batch Progress' text box has not enabled to type");
-                    log.info("'Batch Progress' text box has not enabled to type");
-                }
-            } else {
-                test.fail("'Batch Progress' text box has not displayed");
-                log.info("'Batch Progress' text box has not displayed");
-            }
-        } catch (Exception ex) {
-            File screen = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            Files.copy(screen, new File(prop.getProperty("Bills2U.screenshot.Directory") + "/enterDataInBatchProgress.jpeg"));
-            log.info(ex.getMessage());
-            test.fail(ex.getMessage());
-            test.info("Here, the screenshot has been attached.\n", MediaEntityBuilder.createScreenCaptureFromPath(prop.getProperty("Bills2U.screenshot.Directory") + "/enterDataInBatchProgress.jpeg").build());
-        }
-    }
-
-
 
 
     public static void clickOnCancelBtn() throws InterruptedException, IOException {

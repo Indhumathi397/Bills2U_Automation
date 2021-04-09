@@ -5,11 +5,6 @@ import bills2u_constant.*;
 import bills2u_root.Root_Class;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.google.common.io.Files;
-import com.opencsv.CSVReader;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -20,9 +15,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.*;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class Reminder_Setup_Process extends Root_Class {
@@ -371,20 +363,6 @@ public class Reminder_Setup_Process extends Root_Class {
         
     }
 
-    public boolean isFileDownloadedVerify(String downloadPath, String fileName) {
-        File dir = new File(downloadPath);
-        File[] dirContents = dir.listFiles();
-
-        for (int i = 0; i < Objects.requireNonNull(dirContents).length; i++) {
-            if (dirContents[i].getName().equals(fileName)) {
-                // File has been found, it can now be deleted:
-//                dirContents[i].delete();
-                return true;
-            }
-        }
-        return false;
-    }
-
     public static void clickHereProcess() throws IOException {
         try {
             getTestData();
@@ -407,6 +385,7 @@ public class Reminder_Setup_Process extends Root_Class {
                         File getLatestFile = getLatestFilefromDir(downloadPath);
                         String fileName = getFileNameWithoutExtension(getLatestFile);
                         System.out.println("File Name :- " + fileName);
+                        assert getLatestFile != null;
                         if (getLatestFile.exists()) {
                             test.pass("Biller has able to download the file and latest downloaded file name is '" + getLatestFile.getName() + "'.");
 
@@ -467,82 +446,12 @@ public class Reminder_Setup_Process extends Root_Class {
         return lastModifiedFile;
     }
 
-    public static void editExcelFile() throws IOException {
-        try {
-            getTestData();
-            Obj_Rep_Invoice objInvoice = new Obj_Rep_Invoice();
-            PageFactory.initElements(driver, objInvoice);
-            String downloadPath = prop.getProperty("Bills2U.FileUpload.DownloadPath");
-            File getLatestFile = getLatestFilefromDir(downloadPath);
-            String fileName = getLatestFile.getName();
-            System.out.println("File Name :- " + fileName);
-            if (objInvoice.feedDataTypeSelect.getText().equals(prop.getProperty("Bills2U.FileUpload.FeedDataType"))) {
-                try {
-                    File file1 = new File(downloadPath + fileName);
-                    FileInputStream fileInput = new FileInputStream(file1);
-                    XSSFWorkbook book = new XSSFWorkbook(fileInput);
-                    XSSFSheet sheet = book.getSheetAt(0);
-                    int NoOfRows = sheet.getLastRowNum();
-                    if (file1.exists()) {
-                        for (int i = 2; i <= NoOfRows; i++) {
-                            XSSFRow row = sheet.getRow(i);
-                            XSSFCell cell = row.getCell(3);
-                            if (cell != null) {
-                                String cellValue = cell.getStringCellValue();
-                                if (cellValue.equals(prop.getProperty("Bills2U.FileUpload.ExistingEmail"))) {
-                                    cell.setCellValue(prop.getProperty("Bills2U.FileUpload.Email"));
-                                    System.out.println(prop.getProperty("Bills2U.FileUpload.Email"));
-                                }
-                            }
-                        }
-                    }
-                    fileInput.close();
-                    FileOutputStream fos = new FileOutputStream(downloadPath + fileName);
-                    book.write(fos);
-                    book.close();
-                    fos.close();
-                    test.pass("Biller has able to open,edit and enter the data in the file");
-                    log.info("Biller has able to open,edit and enter the data in the file");
-                } catch (Exception ex) {
-                    test.fail("Biller unable to edit the data in the file.  And it displayed the Exception as '" + ex.getMessage() + "'");
-                    log.info("Biller unable to edit the data in the file.  And it displayed the Exception as '" + ex.getMessage() + "'");
-                    ex.printStackTrace();
-                }
-            } else {
-                try {
-
-                    CSVReader reader = new CSVReader(new FileReader(downloadPath + fileName));
-                    List<String[]> li = reader.readAll();
-                    System.out.println("Total rows which we have is " + li.size());
-                    Iterator<String[]> i1 = li.iterator();
-                    while (i1.hasNext()) {
-                        String[] str = i1.next();
-                        System.out.print(" Values are ");
-                        for (int i = 0; i < str.length; i++) {
-                            if (str[i].equals(prop.getProperty("Bills2U.FileUpload.ExistingEmail"))) {
-                                System.out.print(" " + str[i]);
-                            }
-                        }
-                        System.out.println("    ");
-                    }
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        } catch (Exception ex) {
-            File screen = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            Files.copy(screen, new File(prop.getProperty("Bills2U.screenshot.Directory") + "/editExcelFile.jpeg"));
-            log.info(ex.getMessage());
-            test.fail(ex.getMessage());
-            test.info("Here, the screenshot has been attached.\n", MediaEntityBuilder.createScreenCaptureFromPath(prop.getProperty("Bills2U.screenshot.Directory") + "/editExcelFile.jpeg").build());
-        }
-    }
-
     public static void uploadFile() throws IOException {
         try {
             getTestData();
             String downloadPath = prop.getProperty("Bills2U.FileUpload.DownloadPath");
             File getLatestFile = getLatestFilefromDir(downloadPath);
+            assert getLatestFile != null;
             String fileName = getLatestFile.getName();
             System.out.println("File Name :- " + fileName);
             System.out.println(downloadPath + getLatestFile.getName());
@@ -577,27 +486,6 @@ public class Reminder_Setup_Process extends Root_Class {
         }
     }
 
-    public static void VerifyBillGeanratedCheckBoxClick() {
-
-        try {
-            Obj_Rep_BatchUpload bUpload = new Obj_Rep_BatchUpload();
-            PageFactory.initElements(driver, bUpload);
-            if (bUpload.chkVerifyBillGenerateBox.isSelected()) {
-                test.pass("Biller able to select the Check Box VERIFY BILL GENERATE");
-            } else if (!bUpload.chkVerifyBillGenerateBox.isSelected()) {
-                Actions act=new Actions(driver);
-                act.moveToElement(bUpload.chkVerifyBillGenerateBox).click().build().perform();
-                test.pass("Biller able to select the Check Box VERIFY BILL GENERATE");
-            } else {
-                test.pass("Biller not able to select the Check Box VERIFY BILL GENERATE");
-            }
-        } catch (Exception e) {
-            test.fail(e.getMessage());
-        }
-
-
-    }
-
     public static void ClickPublishButton() {
         try {
 
@@ -620,7 +508,6 @@ public class Reminder_Setup_Process extends Root_Class {
            }
 
             Thread.sleep(5000);
-//            bUpload.btnPublish.click();
             act.moveToElement(bUpload.btnPublish).click().build().perform();
             Thread.sleep(1000);
             bUpload.btnPublishAnyway.click();
